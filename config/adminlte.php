@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => ':: Entre Amigos Manaus ::',
+    'title' => 'Lar de Marias',
 
-    'title_prefix' => 'EA - ',
+    'title_prefix' => 'LDM - ',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Entre Amigos</b>',
+    'logo' => '<b>Lar de Marias 1.0</b>',
 
-    'logo_mini' => '<b>EA</b>',
+    'logo_mini' => '<b>LDM</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'yellow',
+    'skin' => 'purple',
 
     /*
     |--------------------------------------------------------------------------
@@ -117,81 +117,56 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Quartos',
+            'url'  => 'admin/rooms',
+            'icon' => 'home',
+            'can'  => 'rooms_access',
+        ],
+        [
+            'text' => 'Hóspedes',
+            'url'  => 'admin/customers',
+            'icon' => 'users',
+            'can'  => 'manage-room',
+        ],
+        [
+            'text' => 'Reservas',
+            'url'  => 'admin/bookings',
+            'icon' => 'bell',
+            'can'  => 'manage-room',
         ],
         'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings/profile',
+            'text' => 'Usuário',
             'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
+            'submenu'  => [
+                [
+                    'text' => 'Alterar Senha',
+                    'icon' => 'key',
+                ],
+            ],
         ],
         'SETTINGS',
         [
-            'can' => 'root',
+            'can' => 'Admin',
             'text' => 'ACL',
-            'icon' => 'gear',
+            'icon' => 'gears',
             'submenu' => [
                 [
-                    'text' => 'Profiles',
-                    'url'  => 'admin/settings/profiles',
-                    'icon' => 'user',
-                ],
-                [
                     'text' => 'Permissions',
-                    'url'  => 'admin/settings',
+                    'url'  => 'admin/settings/permissions',
                     'icon' => 'lock',
                 ],
                 [
                     'text' => 'Roles',
-                    'url'  => 'admin/settings',
+                    'url'  => 'admin/settings/roles',
                     'icon' => 'building',
                 ],
-            ],
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text' => 'Users',
+                    'url'  => 'admin/settings/users',
+                    'icon' => 'users',
                 ],
             ],
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
         ],
     ],
 

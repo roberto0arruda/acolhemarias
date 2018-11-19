@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Configuration\Permission;
+use App\Models\Admin\Settings\Permission;
 
 class User extends Authenticatable
 {
@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(\App\Models\Configuration\Role::class);
+        return $this->belongsToMany(Models\Admin\Settings\Role::class);
     }
 
     public function hasPermission(Permission $permission)

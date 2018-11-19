@@ -15,11 +15,11 @@
     <!-- small box -->
     <div class="small-box bg-aqua">
       <div class="inner">
-        <h3> {{$totalPosts}} </h3>
-        <p>Posts</p>
+        <h3>0</h3>
+        <p>Quartos</p>
       </div>     
       <div class="icon">
-        <i class="ion ion-bag"></i>
+        <i class="ion ion-home"></i>
       </div>
       <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
@@ -31,7 +31,7 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h3> {{$totalUsers}} </h3>
-        <p>User Registrations</p>
+        <p>Hospedes Registrations</p>
       </div>
       <div class="icon">
         <i class="ion ion-person-add"></i>
@@ -72,15 +72,4 @@
   <!-- ./col -->
 </div>
 
-    @forelse ($posts as $post)
-        <h1> {{ $post->title }} </h1>
-        <p> {{ $post->description }} </p> <br>
-        <b>Autor: {{ $post->user->name }} </b>
-        @can('update-post', $post)
-            <a href=" {{ url("admin/post/$post->id/update") }} ">Editar</a>
-        @endcan
-        <hr>
-    @empty
-        <p>Nenhum Post Cadastrado!!!</p>
-    @endforelse
 @stop

@@ -80,7 +80,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <a href="https://github.com/roberto0arruda/laravel-lardemarias" target="_blank">
+                        Lar de Marias<br>
+                    </a>
+                    with <br> Laravel
                 </div>
 
                 <div class="links">
