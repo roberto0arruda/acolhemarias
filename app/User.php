@@ -1,50 +1,59 @@
 <?php
-
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Admin\Settings\Permission;
+use Hash;
+use App\Models\Role;
 
+/**
+ * Class User
+ *
+ * @package App
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $role
+ * @property string $remember_token
+*/
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
+    
+    
+    
+    /**
+     * Hash password
+     * @param $input
+     */
+    public function setPasswordAttribute($input)
+    {
+        if ($input)
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+    }
+    
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Set to null if empty
+     * @param $input
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    public function roles()
+    public function setRoleIdAttribute($input)
     {
-        return $this->belongsToMany(Models\Admin\Settings\Role::class);
+        $this->attributes['role_id'] = $input ? $input : null;
     }
-
-    public function hasPermission(Permission $permission)
+    
+    public function role()
     {
-        return $this->hasAnyRoles($permission->roles);
+        return $this->belongsTo(Role::class, 'role_id');
     }
+    
+    
+    
 
-    public function hasAnyRoles($roles)
+    public function sendPasswordResetNotification($token)
     {
-        if( is_array($roles) || is_object($roles) ) {
-            return !! $roles->intersect($this->roles)->count();
-        }
-
-        return $this->roles->contains('name', $roles);
+       $this->notify(new ResetPassword($token));
     }
 }

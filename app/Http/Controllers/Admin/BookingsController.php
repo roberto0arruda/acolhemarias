@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Booking;
-use App\Customer;
-use App\Room;
+use App\Models\Booking;
+use App\Models\Customer;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;

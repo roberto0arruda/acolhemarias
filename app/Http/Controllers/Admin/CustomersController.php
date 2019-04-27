@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Customer;
+use App\Models\Customer;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,7 @@ class CustomersController extends Controller
             return abort(401);
         }
         
-        $countries = \App\Country::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $countries = Country::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         return view('admin.customers.create', compact('countries'));
     }
@@ -82,7 +83,7 @@ class CustomersController extends Controller
             return abort(401);
         }
         
-        $countries = \App\Country::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $countries = Country::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $customer = Customer::findOrFail($id);
 
@@ -122,7 +123,7 @@ class CustomersController extends Controller
             return abort(401);
         }
         
-        $countries = \App\Country::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$bookings = \App\Booking::where('customer_id', $id)->get();
+        $countries = Country::get()->pluck('title', 'id')->prepend(trans('quickadmin.qa_please_select'), '');$bookings = \App\Booking::where('customer_id', $id)->get();
 
         $customer = Customer::findOrFail($id);
 
